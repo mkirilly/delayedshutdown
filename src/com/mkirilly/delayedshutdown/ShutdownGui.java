@@ -41,7 +41,7 @@ public class ShutdownGui extends javax.swing.JFrame {
         jCheckBoxWarn = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kikapcs");
+        setTitle("Delayed Shutdown");
         setResizable(false);
 
         jSliderMins.setValue(30);

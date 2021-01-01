@@ -7,10 +7,7 @@ package com.mkirilly.delayedshutdown;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Miki
- */
+
 public class DelayedShutdown {
 
     /**

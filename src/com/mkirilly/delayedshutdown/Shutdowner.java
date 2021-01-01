@@ -6,11 +6,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Osztaly csak statikus metodus(ok)kal, amivel le lehet allitani
- * a rendszert.
- * @author Miki
- */
+
 public class Shutdowner {
     
     /** timer that will schedule the countdown job once per minute */
@@ -56,17 +52,17 @@ public class Shutdowner {
                             }
                         }
 
-                        // ta-taaaa! ez lesz, amit lefuttatunk
+                        // constuct command line for running the system tool
                         final String cmd = cmdBuilder.toString();
 
-                        // lefuttatjuk a parancsot uj folyamatban, hogy
-                        // bezarhassuk az ablakot
+                        // start the tool in a new thread, so that we can still
+                        // control the window
                         java.awt.EventQueue.invokeLater(new Runnable() {
                             public void run() {
                                 try {
-                                    // kapcsolodunk az operacios rendszerhez
+                                    // connect to OS (similar to  a command prompt)
                                     Runtime r = Runtime.getRuntime();
-                                    // vegrehajtjuk a parancsot
+                                    // execute the command line
                                     r.exec(cmd);
 
                                 } catch (IOException ex) {
@@ -78,7 +74,7 @@ public class Shutdowner {
                     }
                     else
                     {
-                        // debug code
+                        // dry run for testing
                         if (sd.hibernate) {
                             System.out.println("Hibernating!!!!");
                         } else {
@@ -97,10 +93,10 @@ public class Shutdowner {
         gui = g;
     }
     /**
-     * Alljon le a rendszer valahany perc mulva
-     * @param minutes hany perc mulva alljon le a rendszer
-     * @param hibernate hibernal (nem sima leallas)
-     * @param warn figyelmeztessen, mielott leall
+     * Shut down in a number of minutes, start countdown
+     * @param minutes number of minutes remaining
+     * @param hibernate should we hibernate or shut down properly?
+     * @param warn issue a warning before shutting down or not
      */
     public void sdInMinutes(int minutes, boolean hibernate, boolean warn)
     {
